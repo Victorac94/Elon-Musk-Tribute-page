@@ -310,7 +310,7 @@ $(document).ready(function () {
 	/*#################################################*/
 	/*################### MODAL BOX ###################*/
 
-	function modalBox() {
+	function modalBox(event) {
 		var src, alt;
 
 		document.getElementById("modalBox").style.display = "block";
@@ -348,13 +348,15 @@ $(document).ready(function () {
 	}
 
 	//Show modalBox of clicked image with the class="clickable"
-	$(".clickable").on("click", modalBox);
+	$(".clickable").on("click", function(event) {
+		modalBox(event);	
+	});
 
 
 	/*#################################################*/
 	/*################### LIGHTBOX ####################*/
 
-	function lightBox() {
+	function lightBox(event) {
 		var imgLB, footerLB, r, t, e;
 		var cln = [];
 
@@ -375,7 +377,7 @@ $(document).ready(function () {
 
 	}
 
-	function footerLB() {
+	function footerLB(event) {
 		$("#containerLB > img").remove();
 		$("#containerLB").prepend(event.target.cloneNode(true));
 		document.getElementById("captionLB").innerHTML = event.target.getAttribute("alt");
@@ -409,11 +411,17 @@ $(document).ready(function () {
 	}
 
 
-	$("#roadster2020").on("click", lightBox);
-	$("#semi-truck").on("click", lightBox);
+	$("#roadster2020").on("click", function(event) {
+		lightBox(event);	
+	});
+	$("#semi-truck").on("click", function(event) {
+		lightBox(event);	
+	});
 
 	//When clicking on a <img> in #footerLB
-	$("#footerLB").on("click", "img", footerLB)
+	$("#footerLB").on("click", "img", function(event) {
+		footerLB(event);	
+	});
 
 	$(".prev").on("click", showPrev);
 	$(".next").on("click", showNext);
